@@ -1,7 +1,9 @@
 import createStore from "unistore";
 import axios from "axios";
+import { Switch, Redirect } from "react-router-dom";
 
 const initialState = {
+  nextPath : '',
   idCompetitionFree : [
     2000,2001,2002,2003,
     2013,2014,2015,2016,
@@ -10,13 +12,15 @@ const initialState = {
   parentAreaFree : [
     "Europe", "World", "South America"
   ],
-  selectedTeamData: {},
-  selectedCompetitionTeams: {},
   listAllCountry: {},
   listAllRegion: [],
   listSelectedArea: [],
   selectedRegion : '',
-  listCountryCode: []
+  listCountryCode: [],
+  selectedCompetitionId: '',
+  listTeams: [],
+  selectedTeamData: {},
+  selectedTeamId: ''
 
 };
 export const store = createStore(initialState);
@@ -92,6 +96,57 @@ export const actions = store => ({
         })
       })
   },
+  getTeams : async (state, id)=> {
+    const req = await {
+      method: "get",
+      url: `${apiPath}/competitions/${id}/teams`,
+      headers: {
+        'X-Auth-Token' : `${apiKey}`
+      }
+    }
+    const self = store
+    await axios(req)
+      .then(response => {
+        console.log('list teams di axios', response.data.teams)
+        let pathCompetition = response.data.competition.name.toLowerCase().replace(/ /gi, '-')
+        self.setState({
+          isLoading: false,
+          listTeams : response.data.teams,
+          nextPath: pathCompetition
+        })
+      })
+      .catch(error => {
+        self.setState({
+          isLoading: false
+        })
+      })
+  },
+  getClub : async (state, id)=> {
+    const req = await {
+      method: "get",
+      url: `${apiPath}/teams/${id}`,
+      headers: {
+        'X-Auth-Token' : `${apiKey}`
+      }
+    }
+    const self = store
+    await axios(req)
+      .then(response => {
+        console.log('list teams di axios', response.data)
+        let pathClub = response.data.shortName.toLowerCase().replace(/ /gi, '-')
+        self.setState({
+          isLoading: false,
+          selectedTeamData : response.data,
+          nextPath: pathClub
+        })
+      })
+      .catch(error => {
+        self.setState({
+          isLoading: false
+        })
+      })
+  },
+
   handleLogin: async (state, security) => {
     // console.log("masuk handle login", security);
     const req = await {

@@ -17,9 +17,11 @@ const MainRoute = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/:area" component={Competition} />
-          <Route exact path="/:area/:competition" component={Club} />
+          <Route exact path="/competition/:competition" component={Club} />
           <Route exact path="/club/:club" component={ClubDetails} />
           <Route exact path="/club/:club/:player" component={PlayerDetails} />
+          <Route path="/club/" component={Home} />
+          <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>
     </Provider>

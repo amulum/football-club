@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'unistore/react'
-import { actions } from '../store/store'
+import { actions, store } from '../store/store'
 import { Grid } from '@material-ui/core'
 // COMPONENTS
 import CardArea from '../Components/CardArea'
@@ -24,13 +24,12 @@ class Competition extends Component {
     }
     console.log('available', this.state.available)
   }
+  handleClickCompetition = async (name, id) => {
+    store.setState({selectedCompetitionId: id})
+    this.props.getTeams(id)
+    this.props.history.push(`/competition/${id}`)
+  }
   render() {
-    // let availableArea = this.props.parentAreaFree
-    // console.log(availableArea)
-    // let filteredArea = this.state.listAllArea.filter(item => 
-    //   availableArea.includes(item.parentArea)
-    // );
-    // console.log('filteredArea di render', filteredArea)
     let filteredCompetition, loopCompetition
     if (this.props.selectedRegion) {
       filteredCompetition = this.props.listAllCompetitions.filter(item => {
@@ -49,7 +48,7 @@ class Competition extends Component {
     loopCompetition = filteredCompetition.map(item => {
       console.log('filtered competition di render',filteredCompetition)
       return (
-          <CardArea value={item.name} handleClick={this.handleClickRegion}/>
+          <CardArea value={item.name} id={item.id} handleClick={this.handleClickCompetition}/>
       )
     })
     return (
@@ -64,4 +63,4 @@ class Competition extends Component {
   }
 }
 
-export default connect('selectedRegion, listAllCompetitions, listCountryCode, idCompetitionFree', actions)(withRouter(Competition))
+export default connect('selectedRegion, listAllCompetitions, listCountryCode, idCompetitionFree, selectedCompetitionId, nextPath', actions)(withRouter(Competition))

@@ -15,12 +15,11 @@ class Home extends Component {
     // get all competition
     // filter di js sesuai list country
     // order by tier per country
+    this.props.history.replace('')
     if (!this.props.listAllArea){
-      console.log('masuk axios')
       await this.props.getAllArea()
     }
     if (!this.props.listAllCompetitions){
-      console.log('get lagi competition')
       await this.props.getAllCompetitions()
     }
   }
@@ -29,13 +28,12 @@ class Home extends Component {
     let filteredArea = this.props.listAllArea.filter(item =>
       item.parentArea === region || item.name === region
       )
-    let pathRegion = region.toLowerCase().replace(' ', '-').replace('/', '')
+    let pathRegion = region.toLowerCase().replace(/ /gi, '-').replace('/', '')
     await filteredArea.forEach(item => {
       if (!areaId.includes(item.id)) {
         areaId.push(item.id)
 
       } else if (item.name === region) {
-        console.log('masuk region', item.name)
         areaId.push(item.id)
       }
     })
@@ -49,7 +47,6 @@ class Home extends Component {
     } else {
       this.setState({available: true})
     }
-    console.log('available', this.state.available)
   }
   render() {
     let filteredRegion
@@ -67,7 +64,6 @@ class Home extends Component {
           <CardArea value={item} handleClick={this.handleClickRegion}/>
       )
     })
-    console.log(this.props.listAllCompetitions)
     return (
       <div>
         <div>Home Page</div>

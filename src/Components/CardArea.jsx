@@ -23,7 +23,7 @@ const CardArea = props => {
     <Grid item xs={12} sm={6} md={4}>
       <Button
         className={classes.wrapper}
-        onClick={(e) =>props.handleClick(props.value)}
+        onClick={(e) =>props.handleClick(props.value, props.id)}
         fullWidth
       >
         {props.value}
