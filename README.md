@@ -1,3 +1,31 @@
+## FOOTBALL CLUB PROFILE APP
+
+In this project you can see detail from football club around the world.
+But now still under development.
+
+### Homepage
+
+In this page you can see all region 
+Under Header component you can see a button that will display accessable area for now
+
+### League Page
+
+In this page you can see all leage or competition inside selected region,
+which will contain detail football club in next page.
+But again, you can see clickable button under header component that will fillter accessable area for now
+
+### Club Page
+
+in this page you will see all football club inside selected competition.
+and then you can click spesific club.
+
+### Club Detail Page
+
+in this page you can see detail from selected football club such as venue, website, logo, etc
+there is SQUAD table there but still under maintenance we can get data from backside maybe you can see them in the other day
+
+### And this from create-reacta-app readme if you want to use this project
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
