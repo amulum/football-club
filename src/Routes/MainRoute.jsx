@@ -19,8 +19,7 @@ const MainRoute = () => {
           <Route exact path="/:area" component={Competition} />
           <Route exact path="/competition/:competition" component={Club} />
           <Route exact path="/club/:club" component={ClubDetails} />
-          <Route exact path="/club/:club/:player" component={PlayerDetails} />
-          <Route path="/club/" component={Home} />
+          <Route exact path="/player/:player" component={PlayerDetails} />
           <Route path="/" component={Home} />
         </Switch>
       </BrowserRouter>

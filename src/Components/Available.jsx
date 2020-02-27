@@ -3,18 +3,21 @@ import { Button, makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles({
   passive : {
-    backgroundColor: "blue",
+    backgroundColor: "green",
+    '&:hover' : {
+      backgroundColor: "green"
+    }
   },
   active : {
-    backgroundColor: "green"
+    backgroundColor: "none"
   }
 })
 
 function Available (props) {
   const classes = useStyles()
   return (
-    <Button variant="contained" onClick={props.handleClick} className={props.isActive? classes.passive : classes.active}>
-      Available For Now
+    <Button variant="contained" onClick={props.handleClick} className={props.isActive? classes.passive : classes.active} fullWidth>
+      Available For NOW
     </Button>
   )
 }

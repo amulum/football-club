@@ -6,6 +6,7 @@ import { Grid } from '@material-ui/core'
 // COMPONENT
 import CardArea from '../Components/CardArea'
 import Available from '../Components/Available'
+import Header from '../Components/Layout/Header'
 class Home extends Component {
   state = {
     available : false,
@@ -16,11 +17,9 @@ class Home extends Component {
     // filter di js sesuai list country
     // order by tier per country
     this.props.history.replace('')
-    if (!this.props.listAllArea){
-      await this.props.getAllArea()
-    }
-    if (!this.props.listAllCompetitions){
+    if (!this.props.listAllArea || !this.props.listAllCompetitions){
       await this.props.getAllCompetitions()
+      this.props.getAllArea()
     }
   }
   handleClickRegion = async (region) => {
@@ -66,7 +65,7 @@ class Home extends Component {
     })
     return (
       <div>
-        <div>Home Page</div>
+        <Header />
         <Available handleClick={this.handleSetAvailable} isActive={this.state.available}/>
         <Grid container spacing={2} padding={1} alignItems="center">
           {loopRegion}

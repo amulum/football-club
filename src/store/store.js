@@ -20,13 +20,15 @@ const initialState = {
   selectedCompetitionId: '',
   listTeams: [],
   selectedTeamData: {},
-  selectedTeamId: ''
+  listPlayer: [],
+  selectedTeamId: '',
+  selectedPlayer: {}
 
 };
 export const store = createStore(initialState);
 
 const apiPath = "https://api.football-data.org/v2";
-const apiKey = "efee7bdaf963467ab18dc7fdfa92b554"
+const apiKey = "0e2e8e71c2c842868922072c12b2afd7"
 export const actions = store => ({
   // BASIC FUNCTION
   setInput: (store, event) => {
@@ -134,10 +136,38 @@ export const actions = store => ({
       .then(response => {
         console.log('list teams di axios', response.data)
         let pathClub = response.data.shortName.toLowerCase().replace(/ /gi, '-')
+        console.log('nextpath', pathClub)
         self.setState({
           isLoading: false,
           selectedTeamData : response.data,
+          listPlayer: response.data.squad,
           nextPath: pathClub
+        })
+      })
+      .catch(error => {
+        self.setState({
+          isLoading: false
+        })
+      })
+  },
+  getPlayer : async (state, id)=> {
+    const req = await {
+      method: "get",
+      url: `${apiPath}/players/${id}`,
+      headers: {
+        'X-Auth-Token' : `${apiKey}`
+      }
+    }
+    const self = store
+    await axios(req)
+      .then(response => {
+        console.log('list teams di axios', response.data)
+        let pathPlayer = response.data.name.toLowerCase().replace(/ /gi, '-')
+        console.log('nextpath', pathPlayer)
+        self.setState({
+          isLoading: false,
+          playerData: response.data,
+          nextPath: pathPlayer
         })
       })
       .catch(error => {

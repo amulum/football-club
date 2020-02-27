@@ -6,12 +6,18 @@ import { Grid } from '@material-ui/core'
 // COMPONENTS
 import CardArea from '../Components/CardArea'
 import Available from '../Components/Available'
+import Header from '../Components/Layout/Header'
 
 class Competition extends Component {
   state = {
     available : false
   }
+  componentDidCatch = (error,info) => {
+    console.log(error)
+    console.log(info)
+  }
   componentDidMount = async () => {
+    await this.props.listAllCompetitions
     console.log('countrycode di Competition', this.props.listCountryCode)
     console.log('params',this.props.match.params.area)
     console.log(this.props.selectedRegion)
@@ -53,7 +59,7 @@ class Competition extends Component {
     })
     return (
       <Fragment >
-        <div>Competition Page</div>
+        <Header />
         <Available handleClick={this.handleSetAvailable} isActive={this.state.available}/>
         <Grid container spacing={2} padding={1} alignItems="center">
           {loopCompetition}
