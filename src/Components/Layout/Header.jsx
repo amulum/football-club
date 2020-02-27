@@ -1,6 +1,11 @@
 import React from 'react'
 import '../../styles/header.css'
 
+/** Return Responsive Header Component
+ * 
+ * @param {*} props no props required for this component
+ * but we can set it dynamic menu or base on some data later if needed
+ */
 const Header = (props) => {
   return (
     <div class="header">

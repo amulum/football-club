@@ -60,6 +60,10 @@ const useStyles = makeStyles({
   }
 })
 
+/** Return Card Component with style already set befor for club information display
+ * 
+ * @param {data} props object of data that will show in page as card with table
+ */
 function CardClub (props) {
   const classes = useStyles()
   console.log('props di card club', props)
@@ -136,28 +140,12 @@ function CardClub (props) {
           </TableHead>
           <TableBody>
               <StyledTableRow >
-                <StyledTableCell component="th" scope="row">SHORT NAME</StyledTableCell>
-                <StyledTableCell align="right">{props.data.shortName}</StyledTableCell>
+                <StyledTableCell component="th" scope="row">COOMING SOON</StyledTableCell>
+                <StyledTableCell align="right">UNDER MAINTENANCE}</StyledTableCell>
               </StyledTableRow>
               <StyledTableRow >
-                <StyledTableCell component="th" scope="row">FOUNDED</StyledTableCell>
-                <StyledTableCell align="right">{props.data.founded}</StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow >
-                <StyledTableCell component="th" scope="row">WEBSITE</StyledTableCell>
-                <StyledTableCell align="right">{props.data.website}</StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow >
-                <StyledTableCell component="th" scope="row">VENUE</StyledTableCell>
-                <StyledTableCell align="right">{props.data.venue}</StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow >
-                <StyledTableCell component="th" scope="row">ADDRESS</StyledTableCell>
-                <StyledTableCell align="right">{props.data.address}</StyledTableCell>
-              </StyledTableRow>
-              <StyledTableRow >
-                <StyledTableCell component="th" scope="row">PHONE NUMBER</StyledTableCell>
-                <StyledTableCell align="right">{props.data.phone}</StyledTableCell>
+                <StyledTableCell component="th" scope="row">COOMING SOON</StyledTableCell>
+                <StyledTableCell align="right">UNDER MAINTENANCE}</StyledTableCell>
               </StyledTableRow>
           </TableBody>
         </Table>

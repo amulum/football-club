@@ -12,15 +12,8 @@ class Competition extends Component {
   state = {
     available : false
   }
-  componentDidCatch = (error,info) => {
-    console.log(error)
-    console.log(info)
-  }
   componentDidMount = async () => {
     await this.props.listAllCompetitions
-    console.log('countrycode di Competition', this.props.listCountryCode)
-    console.log('params',this.props.match.params.area)
-    console.log(this.props.selectedRegion)
   }
   handleSetAvailable = async () => {
     if (this.state.available) {
@@ -28,11 +21,10 @@ class Competition extends Component {
     } else {
       this.setState({available: true})
     }
-    console.log('available', this.state.available)
   }
   handleClickCompetition = async (name, id) => {
+    await this.props.getTeams(id)
     store.setState({selectedCompetitionId: id})
-    this.props.getTeams(id)
     this.props.history.push(`/competition/${id}`)
   }
   render() {
@@ -52,7 +44,6 @@ class Competition extends Component {
       )
     }
     loopCompetition = filteredCompetition.map(item => {
-      console.log('filtered competition di render',filteredCompetition)
       return (
           <CardArea value={item.name} id={item.id} handleClick={this.handleClickCompetition}/>
       )
