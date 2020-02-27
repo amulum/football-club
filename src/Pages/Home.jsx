@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'unistore/react'
 import { actions, store } from '../store/store'
 import { Grid } from '@material-ui/core'
-// COMPONENT
+// COMPONENTS
 import CardArea from '../Components/CardArea'
 import Available from '../Components/Available'
 import Header from '../Components/Layout/Header'
@@ -42,10 +42,6 @@ class Home extends Component {
     ]
   }
   componentDidMount = async () => {
-    // get all areas filter yg ada flagnya kalo
-    // get all competition
-    // filter di js sesuai list country
-    // order by tier per country
     this.props.history.replace('')
     if (!this.props.listAllArea || !this.props.listAllCompetitions){
       await this.props.getAllCompetitions()

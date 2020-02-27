@@ -29,9 +29,10 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-/**
- * Return Component Box with style already set before
- * @param {value} props component that will wrap inside box 
+/** Return Component Box with style already set before
+ * 
+ * @param {value} props string that will show in box of button
+ * @param {icon} props icon from font awesome or the other icon that ave html tag
  */
 const CardArea = props => {
   const classes = useStyles();

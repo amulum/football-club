@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
+import { Grid } from '@material-ui/core'
 import { connect } from 'unistore/react'
 import { actions } from '../store/store'
+// COMPONENTS
 import CardArea from '../Components/CardArea'
-import { Grid } from '@material-ui/core'
 import Header from '../Components/Layout/Header'
 
 class Club extends Component {
   componentDidMount = async () => {
     if (!this.props.listTeams.length){
-      console.log('masuk if ga')
       await this.props.getTeams(this.props.match.params.competition)
       this.props.history.replace(this.props.nextPath)
     }
@@ -27,7 +27,7 @@ class Club extends Component {
     } else {
       loopClub = this.props.listTeams.map(item => {
         return (
-          <CardArea value={item.name} id={item.id} handleClick={this.handleClickClub}/>
+          <CardArea value={item.name} image={item.crestUrl} id={item.id} handleClick={this.handleClickClub}/>
       )
       })
       return (

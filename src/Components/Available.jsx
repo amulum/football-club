@@ -25,6 +25,11 @@ const useStyles = makeStyles({
   }
 })
 
+/** Return Button Component that will handle spesific function for filter data inside page
+ * 
+ * @param {isActive} props boolean state inside page that will control color and page condition
+ * @param {handleClick} props function that will handle condition for this component
+ */
 function Available (props) {
   const classes = useStyles()
   return (
