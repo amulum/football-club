@@ -1,3 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i|Fredoka+One|Oxygen:400,700|Questrial&display=swap');
+@font-face {
+  font-family: 'antipasto_prodemibold';
+  src: url('./Fonts/antipasto/antipasto-pro-demibold-webfont.woff2') format('woff2'),
+       url('./Fonts/antipasto/antipasto-pro-demibold-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+/* 
+*/
+
+.cabin {
+  font-family: 'Cabin', sans-serif;
+}
+
+.fredoka {
+  font-family: 'Fredoka One', cursive;
+}
+
+.oxygen {
+  font-family: 'Oxygen', sans-serif;
+}
+
+.questrial {
+  font-family: 'Questrial', sans-serif; 
+}
+
+
 .App {
   text-align: center;
 }

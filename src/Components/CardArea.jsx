@@ -2,14 +2,30 @@ import React from "react";
 import { Grid, makeStyles, Button } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
-  wrapper: {
+  button: {
     padding: "1em",
-    borderRadius: "20px",
-    border: "1.5px solid #306854",
-    boxShadow: "1px 0px 6px 3px rgba(224,234,236,0.74)",
+    backgroundColor: "#63cdda",
     alignItems: "center",
     textAlign: "center",
     fontSize: "1.5em",
+    color: "#344a5e",
+    minHeight: "5.5em",
+    transition: "0.3",
+    '&:hover' : {
+      backgroundColor: "#344a5e",
+      color: "white"
+    }
+  },
+  wrapper: {
+    transition: "0.3",
+    display: "flex",
+    justifyContent: "center",
+    flexDirection: "column",
+    fontWeight: "600",
+    color: "inherit",
+    '&:hover' : {
+      color : "inherit"
+    },
   }
 }));
 
@@ -22,11 +38,18 @@ const CardArea = props => {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Button
-        className={classes.wrapper}
+        className={classes.button}
         onClick={(e) =>props.handleClick(props.value, props.id)}
         fullWidth
       >
-        {props.value}
+        <div className={classes.wrapper}>
+          <span style={{fontSize: "3em"}}>
+            {props.icon} 
+          </span>
+          <div>
+            {props.value}
+          </div>
+        </div>
       </Button>
     </Grid>
   );
