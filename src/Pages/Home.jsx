@@ -1,21 +1,78 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'unistore/react'
-import { actions } from '../store/store'
-
+import { actions, store } from '../store/store'
+import { Grid } from '@material-ui/core'
+// COMPONENT
+import CardArea from '../Components/CardArea'
+import Available from '../Components/Available'
+import Header from '../Components/Layout/Header'
 class Home extends Component {
-  componentDidMount = () => {
+  state = {
+    available : false,
+  }
+  componentDidMount = async () => {
     // get all areas filter yg ada flagnya kalo
     // get all competition
     // filter di js sesuai list country
     // order by tier per country
-    console.log('list all competition')
+    this.props.history.replace('')
+    if (!this.props.listAllArea || !this.props.listAllCompetitions){
+      await this.props.getAllCompetitions()
+      this.props.getAllArea()
+    }
+  }
+  handleClickRegion = async (region) => {
+    let areaId = []
+    let filteredArea = this.props.listAllArea.filter(item =>
+      item.parentArea === region || item.name === region
+      )
+    let pathRegion = region.toLowerCase().replace(/ /gi, '-').replace('/', '')
+    await filteredArea.forEach(item => {
+      if (!areaId.includes(item.id)) {
+        areaId.push(item.id)
+
+      } else if (item.name === region) {
+        areaId.push(item.id)
+      }
+    })
+    store.setState({ selectedRegion: region })
+    store.setState({ listCountryCode: areaId})
+    this.props.history.push(`/${pathRegion}`)
+  }
+  handleSetAvailable = async () => {
+    if (this.state.available) {
+      this.setState({available: false})
+    } else {
+      this.setState({available: true})
+    }
   }
   render() {
+    let filteredRegion
+    if (this.state.available) {
+      filteredRegion = this.props.listAllRegion.filter(item => {
+        return (
+          this.props.parentAreaFree.includes(item)
+        )
+      })
+    } else {
+      filteredRegion = this.props.listAllRegion
+    }
+    const loopRegion = filteredRegion.map(item => {
+      return (
+          <CardArea value={item} handleClick={this.handleClickRegion}/>
+      )
+    })
     return (
-      <div>Home Page</div>
+      <div>
+        <Header />
+        <Available handleClick={this.handleSetAvailable} isActive={this.state.available}/>
+        <Grid container spacing={2} padding={1} alignItems="center">
+          {loopRegion}
+        </Grid>
+      </div>
     )
   }
 }
 
-export default connect('listAllCompetition', actions)(withRouter(Home))
+export default connect('selectedRegion, parentAreaFree, listAllCompetitions, parentAreaFree, listAllArea, listAllRegion', actions)(withRouter(Home))
