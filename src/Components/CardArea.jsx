@@ -10,12 +10,14 @@ const useStyles = makeStyles(theme => ({
     fontSize: "1.5em",
     color: "#344a5e",
     minHeight: "5.5em",
+    transition: "0.3",
     '&:hover' : {
       backgroundColor: "#344a5e",
       color: "white"
     }
   },
   wrapper: {
+    transition: "0.3",
     display: "flex",
     justifyContent: "center",
     flexDirection: "column",

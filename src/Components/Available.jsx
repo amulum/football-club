@@ -7,17 +7,20 @@ const useStyles = makeStyles({
     fontWeight: "700",
     fontSize: "1.3em",
     backgroundColor: "#e77f67",
+    transition: "0.3",
     '&:hover' : {
       backgroundColor: "#e77f67"
     }
   },
   passive : {
+    transition: "0.3s",
     backgroundColor: "#ffa801",
     '&:hover' : {
       backgroundColor: "#ffa801"
     }
   },
   word : {
+    transition: "0.3",
     color: "inherit"
   }
 })
