@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'unistore/react'
-import { actions, store } from '../store/store'
+import { actions } from '../store/store'
 import CardArea from '../Components/CardArea'
-import { Grid, Button } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
 import Header from '../Components/Layout/Header'
 
 class Club extends Component {
@@ -33,9 +33,7 @@ class Club extends Component {
       return (
         <Fragment>
           <Header />
-          <Button variant="contained" onClick={() => this.props.history.goBack()}>coba back</Button>
-          <div>Club Page</div>
-          <Grid container spacing={2} padding={1} alignItems="center">
+          <Grid container padding={1} alignItems="center">
           {loopClub}
           </Grid>
         </Fragment>

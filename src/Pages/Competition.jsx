@@ -61,7 +61,7 @@ class Competition extends Component {
       <Fragment >
         <Header />
         <Available handleClick={this.handleSetAvailable} isActive={this.state.available}/>
-        <Grid container spacing={2} padding={1} alignItems="center">
+        <Grid container padding={1} alignItems="center">
           {loopCompetition}
         </Grid>
       </Fragment>
